@@ -1,131 +1,69 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Sidebar from '../components/Sidebar.astro';
 import { SITE_TITLE } from '../consts';
-import { readdir } from 'fs/promises';
-
-// Load photo folders for sidebar
-let photoFolders = [];
-try {
-	photoFolders = await readdir('public/photos', { withFileTypes: true })
-		.then(entries => entries
-			.filter(entry => entry.isDirectory())
-			.map(entry => entry.name)
-			.sort((a, b) => a.localeCompare(b))
-		);
-} catch (error) {
-	console.log('No photo folders found yet');
-}
-
-// Load music items
-let musicItems = [];
-try {
-	const musicFiles = await readdir('src/content/music', { withFileTypes: true });
-	musicItems = musicFiles
-		.filter(entry => entry.isFile() && entry.name.endsWith('.md'))
-		.map(entry => ({
-			title: entry.name.replace('.md', '').replace(/-/g, ' '),
-		}));
-} catch (error) {
-	console.log('No music items found yet');
-}
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Music - ${SITE_TITLE}`} description="Music by Samantha Kenny" />
+		<BaseHead title={`music - ${SITE_TITLE}`} description="Music by Samantha Kenny" />
 	</head>
 	<body>
-		<div class="homepage-container">
-			<button class="theme-toggle" aria-label="Toggle theme">
-				<svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
-					<line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-					<line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-					<line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-					<line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-					<line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-					<line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-					<line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-					<line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-				</svg>
-				<svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-				</svg>
-			</button>
-			<button class="mobile-menu-toggle" aria-label="Toggle menu">
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-				</svg>
-			</button>
+		<div class="page-container">
+			<div class="nav-card">
+				<ul class="nav-links">
+					<li><a href="/">photo</a></li>
+					<li><a href="/blog">blog</a></li>
+					<li><a href="/music" class="active">music</a></li>
+					<li><a href="/projects">shop</a></li>
+					<li><a href="/videos">news</a></li>
+				</ul>
+				<div class="social-links">
+					<a href="#" aria-label="YouTube">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M23 9.71a8.5 8.5 0 00-.91-4.13 2.92 2.92 0 00-1.72-1A78.36 78.36 0 0012 4.27a78.45 78.45 0 00-8.34.3 2.87 2.87 0 00-1.46.74c-.9.83-1 2.25-1.1 3.45a48.29 48.29 0 000 6.48 9.55 9.55 0 00.3 2 3.14 3.14 0 00.71 1.36 2.86 2.86 0 001.49.78 45.18 45.18 0 006.5.33c3.5.05 6.57 0 10.2-.28a2.88 2.88 0 001.53-.78 2.49 2.49 0 00.61-1 10.58 10.58 0 00.52-3.4c.04-.56.04-3.94.04-4.54zM9.74 14.85V8.66l5.92 3.11c-1.66.92-3.85 1.96-5.92 3.08z" fill="currentColor"/>
+						</svg>
+					</a>
+					<a href="#" aria-label="Spotify">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 14.5c-.17.3-.52.4-.81.23-2.23-1.36-5.03-1.67-8.34-.92-.32.07-.65-.13-.72-.46-.07-.32.13-.65.46-.72 3.61-.82 6.73-.47 9.23 1.06.29.18.39.53.18.81zm1.15-2.56c-.22.37-.68.49-1.05.27-2.55-1.57-6.44-2.02-9.46-1.1-.39.12-.8-.1-.92-.49-.12-.39.1-.8.49-.92 3.44-1.05 7.76-.54 10.67 1.27.37.21.48.68.27 1.07zm.1-2.67C14.76 9 8.59 8.77 5 9.99c-.45.15-.92-.09-1.07-.54-.15-.45.09-.92.54-1.07 4.13-1.4 10.96-1.13 14.41.98.42.25.56.8.3 1.22-.25.42-.8.56-1.22.3z" fill="currentColor"/>
+						</svg>
+					</a>
+					<a href="#" aria-label="Instagram">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+							<circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+							<circle cx="18" cy="6" r="1" fill="currentColor"/>
+						</svg>
+					</a>
+				</div>
+				<p class="copyright">© 2026 Samantha Kenny. All rights reserved.</p>
+			</div>
 
-			<Sidebar photoFolders={photoFolders} activePage="music" />
-
-			<main class="content-column">
-				<div class="content-scroll">
-					<div class="content-section">
-						<h1>Music</h1>
-						{musicItems.length > 0 ? (
-							<div class="grid">
-								{musicItems.map(item => (
-									<div class="card">
-										<h3>{item.title}</h3>
-										<p>Add your music embeds (Spotify/SoundCloud/YouTube) here</p>
-									</div>
-								))}
-							</div>
-						) : (
-							<div>
-								<p>Add music items to src/content/music/ as markdown files.</p>
-								<p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.95rem;">
-									Create markdown files with frontmatter containing embed URLs from Spotify, SoundCloud, or YouTube.
-								</p>
-							</div>
-						)}
+			<section class="content">
+				<h1>music</h1>
+				<div class="grid">
+					<div class="card">
+						<h3>playlist 01</h3>
+						<p>spotify / soundcloud / youtube embeds go here</p>
+					</div>
+					<div class="card">
+						<h3>playlist 02</h3>
+						<p>spotify / soundcloud / youtube embeds go here</p>
+					</div>
+					<div class="card">
+						<h3>playlist 03</h3>
+						<p>spotify / soundcloud / youtube embeds go here</p>
 					</div>
 				</div>
-			</main>
+			</section>
 		</div>
 
 		<script is:inline>
 			(function() {
-				const theme = localStorage.getItem('theme') ||
-					(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+				const theme = localStorage.getItem('theme') || 'light';
 				document.documentElement.setAttribute('data-theme', theme);
 			})();
-		</script>
-
-		<script>
-			const themeToggle = document.querySelector('.theme-toggle');
-			themeToggle?.addEventListener('click', () => {
-				const currentTheme = document.documentElement.getAttribute('data-theme');
-				const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-				document.documentElement.setAttribute('data-theme', newTheme);
-				localStorage.setItem('theme', newTheme);
-			});
-
-			const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-			const sidebar = document.querySelector('.sidebar');
-
-			mobileMenuToggle?.addEventListener('click', () => {
-				sidebar?.classList.toggle('active');
-				mobileMenuToggle.classList.toggle('active');
-			});
-
-			const sidebarLinks = document.querySelectorAll('.sidebar a');
-			sidebarLinks.forEach(link => {
-				link.addEventListener('click', () => {
-					if (window.innerWidth <= 768) {
-						sidebar?.classList.remove('active');
-						mobileMenuToggle?.classList.remove('active');
-					}
-				});
-			});
 		</script>
 	</body>
 </html>
