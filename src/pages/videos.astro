@@ -1,0 +1,131 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { SITE_TITLE } from '../consts';
+import { readdir } from 'fs/promises';
+
+// Load photo folders for sidebar
+let photoFolders = [];
+try {
+	photoFolders = await readdir('public/photos', { withFileTypes: true })
+		.then(entries => entries
+			.filter(entry => entry.isDirectory())
+			.map(entry => entry.name)
+			.sort((a, b) => a.localeCompare(b))
+		);
+} catch (error) {
+	console.log('No photo folders found yet');
+}
+
+// Load video items
+let videoItems = [];
+try {
+	const videoFiles = await readdir('src/content/videos', { withFileTypes: true });
+	videoItems = videoFiles
+		.filter(entry => entry.isFile() && entry.name.endsWith('.md'))
+		.map(entry => ({
+			title: entry.name.replace('.md', '').replace(/-/g, ' '),
+		}));
+} catch (error) {
+	console.log('No video items found yet');
+}
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Videos - ${SITE_TITLE}`} description="Videos by Samantha Kenny" />
+	</head>
+	<body>
+		<div class="homepage-container">
+			<button class="theme-toggle" aria-label="Toggle theme">
+				<svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+					<line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					<line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					<line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					<line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					<line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					<line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					<line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+					<line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+				</svg>
+				<svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</button>
+			<button class="mobile-menu-toggle" aria-label="Toggle menu">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</button>
+
+			<Sidebar photoFolders={photoFolders} activePage="videos" />
+
+			<main class="content-column">
+				<div class="content-scroll">
+					<div class="content-section">
+						<h1>Videos</h1>
+						{videoItems.length > 0 ? (
+							<div class="grid">
+								{videoItems.map(item => (
+									<div class="card">
+										<h3>{item.title}</h3>
+										<p>Add your video embeds (YouTube/Vimeo) here</p>
+									</div>
+								))}
+							</div>
+						) : (
+							<div>
+								<p>Add video items to src/content/videos/ as markdown files.</p>
+								<p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.95rem;">
+									Create markdown files with frontmatter containing embed URLs from YouTube or Vimeo.
+								</p>
+							</div>
+						)}
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<script is:inline>
+			(function() {
+				const theme = localStorage.getItem('theme') ||
+					(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+				document.documentElement.setAttribute('data-theme', theme);
+			})();
+		</script>
+
+		<script>
+			const themeToggle = document.querySelector('.theme-toggle');
+			themeToggle?.addEventListener('click', () => {
+				const currentTheme = document.documentElement.getAttribute('data-theme');
+				const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				localStorage.setItem('theme', newTheme);
+			});
+
+			const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+			const sidebar = document.querySelector('.sidebar');
+
+			mobileMenuToggle?.addEventListener('click', () => {
+				sidebar?.classList.toggle('active');
+				mobileMenuToggle.classList.toggle('active');
+			});
+
+			const sidebarLinks = document.querySelectorAll('.sidebar a');
+			sidebarLinks.forEach(link => {
+				link.addEventListener('click', () => {
+					if (window.innerWidth <= 768) {
+						sidebar?.classList.remove('active');
+						mobileMenuToggle?.classList.remove('active');
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

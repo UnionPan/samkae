@@ -1,0 +1,45 @@
+---
+import { SITE_TITLE } from '../consts';
+
+export interface Props {
+	photoFolders?: string[];
+	activePage?: string;
+}
+
+const { photoFolders = [], activePage = '' } = Astro.props;
+---
+
+<aside class="sidebar">
+	<div class="sidebar-content">
+		<h1><a href="/" class="site-title">{SITE_TITLE}</a></h1>
+
+		<nav class="main-nav">
+			<ul>
+				<li><a href="/" class={activePage === 'photography' ? 'active' : ''}>Photography</a></li>
+				{photoFolders.length > 0 && photoFolders.map((folder) => {
+					const displayName = folder.replace(/_/g, ' ');
+					return (
+						<li style="margin-left: 1rem;">
+							<a href="#" data-category={folder} class="category-link">{displayName}</a>
+						</li>
+					);
+				})}
+				<li><a href="/blog" class={activePage === 'blog' ? 'active' : ''}>Blog</a></li>
+				<li><a href="/music" class={activePage === 'music' ? 'active' : ''}>Music</a></li>
+				<li><a href="/videos" class={activePage === 'videos' ? 'active' : ''}>Videos</a></li>
+				<li><a href="/projects" class={activePage === 'projects' ? 'active' : ''}>Projects</a></li>
+			</ul>
+
+			<ul>
+				<li><a href="/about" class={activePage === 'about' ? 'active' : ''}>About</a></li>
+				<li><a href="/contact" class={activePage === 'contact' ? 'active' : ''}>Contact</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+	<footer class="sidebar-footer">
+		<!-- Add social links here when ready -->
+		all contents © 2025. all rights reserved.
+	</footer>
+</aside>
