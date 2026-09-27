@@ -9,10 +9,10 @@ import { SITE_TITLE } from '../consts';
 		<BaseHead title={`shop - ${SITE_TITLE}`} description="Shop by Samantha Kenny" />
 	</head>
 	<body>
-		<div class="page-container">
-			<div class="nav-card">
+		<div class="page-container vintage">
+			<div class="nav-card" title="back to home">
 				<ul class="nav-links">
-					<li><a href="/">photo</a></li>
+					<li><a href="/photo">photo</a></li>
 					<li><a href="/blog">blog</a></li>
 					<li><a href="/music">music</a></li>
 					<li><a href="/projects" class="active">shop</a></li>
@@ -51,21 +51,94 @@ import { SITE_TITLE } from '../consts';
 			</div>
 
 			<section class="content">
-				<h1>shop</h1>
-				<div class="grid">
-					<div class="card">
-						<h3>product alpha</h3>
-						<p>description of your product · add details to src/content/projects/</p>
+				<header class="masthead reveal">
+					<div class="masthead-row">
+						<span class="kicker">catalogue no. 1</span>
+						<span class="kicker">general store</span>
 					</div>
-					<div class="card">
-						<h3>product beta</h3>
-						<p>description of your product · add details to src/content/projects/</p>
-					</div>
-					<div class="card">
-						<h3>product gamma</h3>
-						<p>description of your product · add details to src/content/projects/</p>
-					</div>
+					<h1>shop</h1>
+					<p class="dek">goods, prints &amp; pressings — made in small batches</p>
+				</header>
+
+				<div class="catalogue">
+					<article class="item reveal" style="--i: 1">
+						<div class="plate">
+							<span class="plate-no">no. 01</span>
+							<svg viewBox="0 0 100 100" aria-hidden="true">
+								<rect x="12" y="26" width="76" height="48" rx="3"/>
+								<rect x="22" y="33" width="56" height="22" rx="2"/>
+								<circle cx="36" cy="44" r="5"/>
+								<circle cx="64" cy="44" r="5"/>
+								<path d="M30 74 L35 64 H65 L70 74"/>
+							</svg>
+							<span class="stamp">coming soon</span>
+							<span class="plate-fig">fig. 1</span>
+						</div>
+						<div class="item-line">
+							<h3 class="item-name">cassette</h3>
+							<span class="leader"></span>
+							<span class="item-price">$ —</span>
+						</div>
+						<p class="item-note">limited edition</p>
+					</article>
+					<article class="item reveal" style="--i: 2">
+						<div class="plate">
+							<span class="plate-no">no. 02</span>
+							<svg viewBox="0 0 100 100" aria-hidden="true">
+								<path d="M37 18 L20 27 L11 44 L24 50 L28 43 V84 H72 V43 L76 50 L89 44 L80 27 L63 18 Q50 29 37 18 Z"/>
+							</svg>
+							<span class="stamp" style="--tilt: 8deg">in the works</span>
+							<span class="plate-fig">fig. 2</span>
+						</div>
+						<div class="item-line">
+							<h3 class="item-name">t-shirt</h3>
+							<span class="leader"></span>
+							<span class="item-price">$ —</span>
+						</div>
+						<p class="item-note">cotton · sizes tba</p>
+					</article>
+					<article class="item reveal" style="--i: 3">
+						<div class="plate">
+							<span class="plate-no">no. 03</span>
+							<svg viewBox="0 0 100 100" aria-hidden="true">
+								<rect x="24" y="12" width="52" height="74"/>
+								<rect x="31" y="19" width="38" height="44"/>
+								<circle cx="50" cy="41" r="10"/>
+								<line x1="31" y1="72" x2="69" y2="72"/>
+								<line x1="38" y1="78" x2="62" y2="78"/>
+							</svg>
+							<span class="stamp" style="--tilt: -6deg">coming soon</span>
+							<span class="plate-fig">fig. 3</span>
+						</div>
+						<div class="item-line">
+							<h3 class="item-name">art print</h3>
+							<span class="leader"></span>
+							<span class="item-price">$ —</span>
+						</div>
+						<p class="item-note">signed &amp; numbered</p>
+					</article>
+					<article class="item reveal" style="--i: 4">
+						<div class="plate">
+							<span class="plate-no">no. 04</span>
+							<svg viewBox="0 0 100 100" aria-hidden="true">
+								<path d="M18 40 H82 L77 88 H23 Z"/>
+								<path d="M35 40 C35 14 65 14 65 40"/>
+								<path d="M41 40 C41 23 59 23 59 40"/>
+							</svg>
+							<span class="stamp" style="--tilt: 10deg">in the works</span>
+							<span class="plate-fig">fig. 4</span>
+						</div>
+						<div class="item-line">
+							<h3 class="item-name">tote bag</h3>
+							<span class="leader"></span>
+							<span class="item-price">$ —</span>
+						</div>
+						<p class="item-note">natural canvas</p>
+					</article>
 				</div>
+
+				<p class="fleuron">❦</p>
+				<p class="colophon">shipping &amp; ordering details to follow</p>
 			</section>
 		</div>
 

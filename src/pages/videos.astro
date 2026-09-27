@@ -1,6 +1,10 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import { SITE_TITLE } from '../consts';
+
+const today = new Date()
+	.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
+	.toLowerCase();
 ---
 
 <!doctype html>
@@ -9,10 +13,10 @@ import { SITE_TITLE } from '../consts';
 		<BaseHead title={`news - ${SITE_TITLE}`} description="News by Samantha Kenny" />
 	</head>
 	<body>
-		<div class="page-container">
-			<div class="nav-card">
+		<div class="page-container vintage">
+			<div class="nav-card" title="back to home">
 				<ul class="nav-links">
-					<li><a href="/">photo</a></li>
+					<li><a href="/photo">photo</a></li>
 					<li><a href="/blog">blog</a></li>
 					<li><a href="/music">music</a></li>
 					<li><a href="/projects">shop</a></li>
@@ -51,30 +55,52 @@ import { SITE_TITLE } from '../consts';
 			</div>
 
 			<section class="content">
-				<h1>news</h1>
-				<div class="grid">
-					<div class="card">
-						<div style="background: rgba(255,255,255,0.05); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-							<span style="opacity: 0.5;">news thumbnail</span>
+				<header class="reveal">
+					<div class="gazette-bar"><span>vol. i — no. 1</span><span>{today}</span><span>price: free</span></div>
+					<h1 class="gazette-title">The Samkae Gazette</h1>
+					<div class="gazette-bar gazette-bar--double"><span>est. 2021</span><span>all the news that fits</span><span>late edition</span></div>
+				</header>
+
+				<div class="gazette-grid">
+					<article class="reveal" style="--i: 1">
+						<span class="kicker">front page</span>
+						<h2 class="headline">headline forthcoming</h2>
+						<p class="gazette-dek">a standing space for releases, announcements &amp; happenings.</p>
+						<figure class="halftone">
+							<div class="halftone-img"></div>
+							<figcaption>fig. 1 — photograph to come</figcaption>
+						</figure>
+						<div class="columns">
+							<p>This column is being kept warm for the first real story. When there is news to share — a new song, a video, a show, a small victory — it will be set here in plain type, with a headline to match.</p>
+							<p>Until then, the presses are quiet. The ink is mixed, the paper is cut, and the front page waits for something worth printing.</p>
+							<p>Check back soon, or follow along on youtube, spotify or instagram for word as it happens.</p>
 						</div>
-						<h3>news title 01</h3>
-						<p>placeholder content</p>
-					</div>
-					<div class="card">
-						<div style="background: rgba(255,255,255,0.05); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-							<span style="opacity: 0.5;">news thumbnail</span>
+					</article>
+
+					<aside class="gazette-side reveal" style="--i: 2">
+						<div class="brief">
+							<span class="kicker">new music</span>
+							<h3>a short headline</h3>
+							<p>one or two lines of news, set in small type.</p>
 						</div>
-						<h3>news title 02</h3>
-						<p>placeholder content</p>
-					</div>
-					<div class="card">
-						<div style="background: rgba(255,255,255,0.05); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-							<span style="opacity: 0.5;">news thumbnail</span>
+						<div class="brief">
+							<span class="kicker">on screen</span>
+							<h3>a short headline</h3>
+							<p>one or two lines of news, set in small type.</p>
 						</div>
-						<h3>news title 03</h3>
-						<p>placeholder content</p>
-					</div>
+						<div class="brief">
+							<span class="kicker">on the calendar</span>
+							<ul class="dates">
+								<li><span>— · —</span><span>details tba</span></li>
+								<li><span>— · —</span><span>details tba</span></li>
+								<li><span>— · —</span><span>details tba</span></li>
+							</ul>
+						</div>
+					</aside>
 				</div>
+
+				<p class="fleuron">❦</p>
+				<p class="colophon">printed on the web · all rights reserved</p>
 			</section>
 		</div>
 

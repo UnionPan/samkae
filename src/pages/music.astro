@@ -9,10 +9,10 @@ import { SITE_TITLE } from '../consts';
 		<BaseHead title={`music - ${SITE_TITLE}`} description="Music by Samantha Kenny" />
 	</head>
 	<body>
-		<div class="page-container">
-			<div class="nav-card">
+		<div class="page-container vintage">
+			<div class="nav-card" title="back to home">
 				<ul class="nav-links">
-					<li><a href="/">photo</a></li>
+					<li><a href="/photo">photo</a></li>
 					<li><a href="/blog">blog</a></li>
 					<li><a href="/music" class="active">music</a></li>
 					<li><a href="/projects">shop</a></li>
@@ -51,20 +51,74 @@ import { SITE_TITLE } from '../consts';
 			</div>
 
 			<section class="content">
-				<h1>music</h1>
-				<div class="grid">
-					<div class="card">
-						<h3>playlist 01</h3>
-						<p>spotify / soundcloud / youtube embeds go here</p>
+				<header class="masthead reveal">
+					<div class="masthead-row">
+						<span class="kicker">side a</span>
+						<span class="kicker">discography</span>
 					</div>
-					<div class="card">
-						<h3>playlist 02</h3>
-						<p>spotify / soundcloud / youtube embeds go here</p>
-					</div>
-					<div class="card">
-						<h3>playlist 03</h3>
-						<p>spotify / soundcloud / youtube embeds go here</p>
-					</div>
+					<h1>music</h1>
+					<p class="dek">records, sessions &amp; sounds — pressed in small numbers</p>
+				</header>
+
+				<div class="records">
+					<article class="record reveal" style="--i: 1; --label: #b8322a">
+						<div class="sleeve">
+							<div class="vinyl"></div>
+							<div class="cover">
+								<span class="art art-sun"></span>
+								<span class="cover-name">sam kae</span>
+								<span class="cover-cat">SK—001</span>
+							</div>
+						</div>
+						<p class="record-meta"><span>SK—001</span><span>single</span></p>
+						<h3 class="record-title">untitled i</h3>
+						<p class="record-note">forthcoming</p>
+					</article>
+					<article class="record reveal" style="--i: 2; --label: #d9a441">
+						<div class="sleeve">
+							<div class="vinyl"></div>
+							<div class="cover">
+								<span class="art art-stripes"></span>
+								<span class="cover-name">sam kae</span>
+								<span class="cover-cat">SK—002</span>
+							</div>
+						</div>
+						<p class="record-meta"><span>SK—002</span><span>ep</span></p>
+						<h3 class="record-title">untitled ii</h3>
+						<p class="record-note">forthcoming</p>
+					</article>
+					<article class="record reveal" style="--i: 3; --label: #2e6b4f">
+						<div class="sleeve">
+							<div class="vinyl"></div>
+							<div class="cover">
+								<span class="art art-dots"></span>
+								<span class="cover-name">sam kae</span>
+								<span class="cover-cat">SK—003</span>
+							</div>
+						</div>
+						<p class="record-meta"><span>SK—003</span><span>cassette</span></p>
+						<h3 class="record-title">demos, vol. 1</h3>
+						<p class="record-note">forthcoming</p>
+					</article>
+					<article class="record reveal" style="--i: 4; --label: #f1e9d8">
+						<div class="sleeve">
+							<div class="vinyl"></div>
+							<div class="cover">
+								<span class="art art-rings"></span>
+								<span class="cover-name">sam kae</span>
+								<span class="cover-cat">SK—004</span>
+							</div>
+						</div>
+						<p class="record-meta"><span>SK—004</span><span>lp</span></p>
+						<h3 class="record-title">live recordings</h3>
+						<p class="record-note">forthcoming</p>
+					</article>
+				</div>
+
+				<div class="listen reveal" style="--i: 5">
+					<span class="kicker">listen now</span>
+					<a href="https://open.spotify.com/artist/3qo9BlnVduy6nW0pY1kmTQ" target="_blank" rel="noopener noreferrer">spotify ↗</a>
+					<a href="https://www.youtube.com/@samkaeeee" target="_blank" rel="noopener noreferrer">youtube ↗</a>
 				</div>
 			</section>
 		</div>

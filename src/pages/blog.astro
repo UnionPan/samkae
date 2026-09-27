@@ -9,10 +9,10 @@ import { SITE_TITLE } from '../consts';
 		<BaseHead title={`blog - ${SITE_TITLE}`} description="Blog posts by Samantha Kenny" />
 	</head>
 	<body>
-		<div class="page-container">
-			<div class="nav-card">
+		<div class="page-container vintage">
+			<div class="nav-card" title="back to home">
 				<ul class="nav-links">
-					<li><a href="/">photo</a></li>
+					<li><a href="/photo">photo</a></li>
 					<li><a href="/blog" class="active">blog</a></li>
 					<li><a href="/music">music</a></li>
 					<li><a href="/projects">shop</a></li>
@@ -51,21 +51,75 @@ import { SITE_TITLE } from '../consts';
 			</div>
 
 			<section class="content">
-				<h1>blog</h1>
-				<div class="grid">
-					<a href="/blog/thoughts-on-creativity" class="card">
-						<h3>thoughts on creativity</h3>
-						<p>placeholder post · add your own markdown files to src/content/blog/</p>
-					</a>
-					<a href="/blog/latest-work" class="card">
-						<h3>latest work</h3>
-						<p>placeholder post · add your own markdown files to src/content/blog/</p>
-					</a>
-					<a href="/blog/behind-the-scenes" class="card">
-						<h3>behind the scenes</h3>
-						<p>placeholder post · add your own markdown files to src/content/blog/</p>
-					</a>
-				</div>
+				<header class="masthead reveal">
+					<div class="masthead-row">
+						<span class="kicker">vol. 01</span>
+						<span class="kicker">contents</span>
+					</div>
+					<h1>blog</h1>
+					<p class="dek">notes, drafts &amp; small dispatches — kept since 2021</p>
+				</header>
+
+				<ol class="journal">
+					<li class="entry entry--lead reveal" style="--i: 1">
+						<span class="entry-no">01</span>
+						<div>
+							<div class="entry-line">
+								<h2 class="entry-title">first entry</h2>
+								<span class="leader"></span>
+								<span class="entry-page">p. 1</span>
+							</div>
+							<p class="entry-dek">the opening page. words forthcoming.</p>
+						</div>
+					</li>
+					<li class="entry reveal" style="--i: 2">
+						<span class="entry-no">02</span>
+						<div>
+							<div class="entry-line">
+								<h2 class="entry-title">field notes</h2>
+								<span class="leader"></span>
+								<span class="entry-page">p. 7</span>
+							</div>
+							<p class="entry-dek">a few lines, set down in pencil.</p>
+						</div>
+					</li>
+					<li class="entry reveal" style="--i: 3">
+						<span class="entry-no">03</span>
+						<div>
+							<div class="entry-line">
+								<h2 class="entry-title">on the process</h2>
+								<span class="leader"></span>
+								<span class="entry-page">p. 12</span>
+							</div>
+							<p class="entry-dek">how a song begins, and where it goes.</p>
+						</div>
+					</li>
+					<li class="entry reveal" style="--i: 4">
+						<span class="entry-no">04</span>
+						<div>
+							<div class="entry-line">
+								<h2 class="entry-title">songs in progress</h2>
+								<span class="leader"></span>
+								<span class="entry-page">p. 19</span>
+							</div>
+							<p class="entry-dek">half-finished things, kept honest.</p>
+						</div>
+					</li>
+					<li class="entry reveal" style="--i: 5">
+						<span class="entry-no">05</span>
+						<div>
+							<div class="entry-line">
+								<h2 class="entry-title">letters, unsent</h2>
+								<span class="leader"></span>
+								<span class="entry-page">p. 24</span>
+							</div>
+							<p class="entry-dek">to be opened at a later date.</p>
+						</div>
+					</li>
+				</ol>
+
+				<p class="fleuron">❦</p>
+				<p class="colophon">new entries forthcoming</p>
 			</section>
 		</div>
 

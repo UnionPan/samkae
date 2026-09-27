@@ -1,18 +1,26 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import { SITE_TITLE } from '../consts';
+
+// Placeholder rolls: each frame is an exposure style (1–6); `select` is the circled frame.
+// Swap exposures for <img> tags once real scans are in public/photos/.
+const rolls = [
+	{ no: '01', title: 'first light', frames: [1, 2, 6, 1, 3, 2], select: 1 },
+	{ no: '02', title: 'the city', frames: [3, 5, 4, 3, 5, 1], select: 3 },
+	{ no: '03', title: 'people', frames: [4, 6, 4, 2, 4, 5], select: 2 },
+];
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`contact - ${SITE_TITLE}`} description="Get in touch with Samantha Kenny" />
+		<BaseHead title={`photo - ${SITE_TITLE}`} description="Photography by Samantha Kenny" />
 	</head>
 	<body>
-		<div class="page-container">
+		<div class="page-container vintage">
 			<div class="nav-card" title="back to home">
 				<ul class="nav-links">
-					<li><a href="/photo">photo</a></li>
+					<li><a href="/photo" class="active">photo</a></li>
 					<li><a href="/blog">blog</a></li>
 					<li><a href="/music">music</a></li>
 					<li><a href="/projects">shop</a></li>
@@ -51,8 +59,40 @@ import { SITE_TITLE } from '../consts';
 			</div>
 
 			<section class="content">
-				<h1>contact</h1>
-				<p>edit src/content/contact.md to add your contact information, social links, and email here.</p>
+				<header class="masthead reveal">
+					<div class="masthead-row">
+						<span class="kicker">rolls 01 — 03</span>
+						<span class="kicker">contact sheets</span>
+					</div>
+					<h1>photo</h1>
+					<p class="dek">frames from the road, the studio &amp; everywhere in between</p>
+				</header>
+
+				{rolls.map((roll, r) => (
+					<article class="roll reveal" style={`--i: ${r + 1}`}>
+						<div class="roll-head">
+							<span class="kicker">roll {roll.no}</span>
+							<h2 class="roll-title">{roll.title}</h2>
+							<span class="kicker">{roll.frames.length} exp.</span>
+						</div>
+						<div class="filmstrip">
+							<div class="strip">
+								{roll.frames.map((exposure, f) => {
+									const n = r * roll.frames.length + f + 1;
+									return (
+										<figure class:list={['frame', { 'frame--select': f === roll.select }]}>
+											<div class={`exposure exp-${exposure}`}></div>
+											<figcaption>▸ {n}<span>{n}A</span></figcaption>
+										</figure>
+									);
+								})}
+							</div>
+						</div>
+					</article>
+				))}
+
+				<p class="fleuron">❦</p>
+				<p class="colophon">full rolls forthcoming</p>
 			</section>
 		</div>
 
